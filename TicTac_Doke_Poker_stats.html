@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistic</title>
+    <style>
+        body{
+            //background-color:lightgray;
+        }
+        #tic{
+            height:300px;
+            width:300px;
+            //border:1px solid black;
+        }
+        td{
+            height:50px;
+            width:50px;
+            //line-height: 50px;
+            text-align: center;
+            border:1px solid black
+        }
+        tr{
+            border:1px solid black;
+        }
+        td:hover{
+            background-color: black;
+            color:white;
+            //line-height: 25px;
+        }
+        #dice{
+            width:600px;
+            height:100px;
+        }
+        #dice>td{
+            width:1000px;
+            height:100px;
+        }
+        #poker{
+            width:1500px;
+            height:150px;
+            max-width: 1500px;
+        }
+        #poker>td{
+            max-width: 150px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        
+        /** TIC TAC TOE **/
+        var sum_f = 24;
+        var sum_all= 576;
+        var t=2;
+        var th=3;
+        var f=4;
+        var n;
+        
+        function silnia(n) {
+            if ((n == 0) || (n == 1))
+            return 1;
+            else {
+                var result = (n * silnia(n-1) );
+                return result;
+            };
+        };
+        
+        function Round(n, k) {
+            var factor = Math.pow(10, k);
+            return Math.round(n*factor)/factor;
+        };
+        
+        function two(){
+        var out = document.getElementById("two");
+        var out2 = document.getElementById("four");
+        var out3 = document.getElementById("six");
+        var out4 = document.getElementById("eight");
+        var result=silnia(24)/(silnia(2)*silnia(24-2));
+        var result_s=Round((2*2*2*2)/576,3);
+        out.innerHTML=result+" move<br>"+result_s+" P(2)"; 
+        out2.innerHTML=result+" move<br>"+result_s+" P(2)";   
+        out3.innerHTML=result+" move<br>"+result_s+" P(2)"; 
+        out4.innerHTML=result+" move<br>"+result_s+" P(2)"; 
+        
+            $("#two").css({"background-color":"black","color":"white"});
+            $("#four").css({"background-color":"black","color":"white"});
+            $("#six").css({"background-color":"black","color":"white"});
+            $("#eight").css({"background-color":"black","color":"white"});
+        };
+        function three(){
+        var out = document.getElementById("one");
+        var out2 = document.getElementById("three");
+        var out3 = document.getElementById("seven");
+        var out4 = document.getElementById("nine");
+        var result=silnia(24)/(silnia(3)*silnia(24-3));
+        var result_s=Round((3*3*3*3)/576,3);
+        out.innerHTML=result+" move<br>"+result_s+" P(3)"; 
+        out2.innerHTML=result+" move<br>"+result_s+" P(3)";   
+        out3.innerHTML=result+" move<br>"+result_s+" P(3)"; 
+        out4.innerHTML=result+" move<br>"+result_s+" P(3)"; 
+        
+            $("#one").css({"background-color":"black","color":"white"});
+            $("#three").css({"background-color":"black","color":"white"});
+            $("#seven").css({"background-color":"black","color":"white"});
+            $("#nine").css({"background-color":"black","color":"white"});
+        };
+        function four(){
+        var out = document.getElementById("five");
+        var result=silnia(24)/(silnia(4)*silnia(24-4));
+        var result_s=Round((4*4*4*4)/576,3);
+        out.innerHTML=result+" move<br>"+result_s+" P(4)"; 
+        
+            $("#five").css({"background-color":"black","color":"white"});
+        };
+        function r2(){
+            var out = document.getElementById("two");
+            var out2 = document.getElementById("four");
+            var out3 = document.getElementById("six");
+            var out4 = document.getElementById("eight");
+            out.innerHTML=2; 
+            out2.innerHTML=4; 
+            out3.innerHTML=6; 
+            out4.innerHTML=8; 
+            
+                $("#two").css({"background-color":"white","color":"black"});
+                $("#four").css({"background-color":"white","color":"black"});
+                $("#six").css({"background-color":"white","color":"black"});
+                $("#eight").css({"background-color":"white","color":"black"});
+        };
+        function r3(){
+            var out = document.getElementById("one");
+            var out2 = document.getElementById("three");
+            var out3 = document.getElementById("seven");
+            var out4 = document.getElementById("nine");
+            out.innerHTML=1; 
+            out2.innerHTML=3; 
+            out3.innerHTML=7; 
+            out4.innerHTML=8; 
+            
+                $("#one").css({"background-color":"white","color":"black"});
+                $("#three").css({"background-color":"white","color":"black"});
+                $("#seven").css({"background-color":"white","color":"black"});
+                $("#nine").css({"background-color":"white","color":"black"});
+        };
+        function r4(){
+            var out = document.getElementById("five");
+            out.innerHTML=5; 
+            
+                $("#five").css({"background-color":"white","color":"black"});
+        };
+        
+        draw.innerHTML=1-(0.444+0.141+0.028);
+        
+        /** DICE **/
+        
+        function dice(){
+            var done = document.getElementById("done");
+            var dtwo = document.getElementById("dtwo");
+            var dthree = document.getElementById("dthree");
+            var dfour = document.getElementById("dfour");
+            var dfive = document.getElementById("dfive");
+            var dsix = document.getElementById("dsix");
+            
+            var result=Round(1/6,3);
+            var result_2=Round(2/(6*6),3);
+            var result_3=Round(3/(6*6*6),3);
+            var result_4=Round(4/(6*6*6*6),3);
+            var result_5=Round(5/(6*6*6*6*6),3);
+            var result_6=Round(6/(6*6*6*6*6*6),4);
+            done.innerHTML="P(1/6) "+result+"<br>P(2/6^2) "+result_2+"<br>P(3/6^3) "+result_3+"<br>P(4/6^4) "+result_4+"<br>P(5/6^5)"+result_5+"      <br>P(6/6^6)"+result_6;
+            dtwo.innerHTML="P(1/6) "+result+"<br>P(2/6^2) "+result_2+"<br>P(3/6^3) "+result_3+"<br>P(4/6^4) "+result_4+"<br>P(5/6^5)"+result_5+"<br>P(6/6^6)"+result_6; 
+            dthree.innerHTML="P(1/6) "+result+"<br>P(2/6^2) "+result_2+"<br>P(3/6^3) "+result_3+"<br>P(4/6^4) "+result_4+"<br>P(5/6^5)"+result_5+"<br>P(6/6^6)"+result_6; 
+            dfour.innerHTML="P(1/6) "+result+"<br>P(2/6^2) "+result_2+"<br>P(3/6^3) "+result_3+"<br>P(4/6^4) "+result_4+"<br>P(5/6^5)"+result_5+"<br>P(6/6^6)"+result_6; 
+            dfive.innerHTML="P(1/6) "+result+"<br>P(2/6^2) "+result_2+"<br>P(3/6^3) "+result_3+"<br>P(4/6^4) "+result_4+"<br>P(5/6^5)"+result_5+"<br>P(6/6^6)"+result_6; 
+            dsix.innerHTML="P(1/6) "+result+"<br>P(2/6^2) "+result_2+"<br>P(3/6^3) "+result_3+"<br>P(4/6^4) "+result_4+"<br>P(5/6^5)"+result_5+"<br>P(6/6^6)"+result_6; 
+        
+        };
+        
+        function dice_r(){
+            var done = document.getElementById("done");
+            var dtwo = document.getElementById("dtwo");
+            var dthree = document.getElementById("dthree");
+            var dfour = document.getElementById("dfour");
+            var dfive = document.getElementById("dfive");
+            var dsix = document.getElementById("dsix");
+            done.innerHTML=1;
+            dtwo.innerHTML=2; 
+            dthree.innerHTML=3; 
+            dfour.innerHTML=4; 
+            dfive.innerHTML=5; 
+            dsix.innerHTML=6;  
+            
+                
+        };
+    
+        /** POKER **/
+        
+        function pone(){
+            var pone = document.getElementById("pone");     
+            var result=(silnia(52)/(silnia(5)*silnia(52-5)))-1296420;
+            var result_s=Round(result/2598960,4);
+            pone.innerHTML=result+" Possible layouts<br>"+result_s*100+"% Chance";
+            
+        };
+        function prone(){
+            var pone = document.getElementById("pone");
+            pone.innerHTML="High card";
+      
+        };
+        function ptwo(){
+            var ptwo = document.getElementById("ptwo");     
+            var result=(silnia(13)/(silnia(1)*silnia(13-1)))*(silnia(4)/(silnia(2)*silnia(4-2)))*(silnia(12)/(silnia(3)*silnia(12-3)))*(silnia(4)/(silnia(1)*silnia(4-1)))*(silnia(4)/(silnia(1)*silnia(4-1)))*(silnia(4)/(silnia(1)*silnia(4-1)));
+            var result_s=Round(result/2598960,4);
+            ptwo.innerHTML=result+" Possible layouts<br>"+result_s*100+"% Chance";
+            
+        };
+        function prtwo(){
+            var ptwo = document.getElementById("ptwo");
+            ptwo.innerHTML="One pair";
+      
+        };
+        function pthree(){
+            var pthree = document.getElementById("pthree");     
+            var result=(silnia(13)/(silnia(2)*silnia(13-2)))*(silnia(4)/(silnia(2)*silnia(4-2)))*(silnia(4)/(silnia(2)*silnia(4-2)))*(silnia(11)/(silnia(1)*silnia(11-1)))*(silnia(4)/(silnia(1)*silnia(4-1)));
+            var result_s=Round(result/2598960,4);
+            pthree.innerHTML=result+" Possible layouts<br>"+result_s*100+"% Chance";
+            
+        };
+        function prthree(){
+            var pthree = document.getElementById("pthree");
+            pthree.innerHTML="Two pair";
+      
+        };
+        function pfour(){
+            var pfour = document.getElementById("pfour");     
+            var result=(silnia(13)/(silnia(1)*silnia(13-1)))*(silnia(4)/(silnia(3)*silnia(4-3)))*(silnia(12)/(silnia(2)*silnia(12-2)))*(silnia(4)/(silnia(1)*silnia(4-1)))*(silnia(4)/(silnia(1)*silnia(4-1)));
+            var result_s=Round(result/2598960,4);
+            pfour.innerHTML=result+" Possible layouts<br>"+result_s*100+"% Chance";
+            
+        };
+        function prfour(){
+            var pfour = document.getElementById("pfour");
+            pfour.innerHTML="Three of a kind";
+      
+        };
+        function pfive(){
+            var pfive = document.getElementById("pfive");     
+            var result=(silnia(10)/(silnia(1)*silnia(10-1)))*(silnia(4)/(silnia(1)*silnia(4-1)))*(silnia(4)/(silnia(1)*silnia(4-1)))*(silnia(4)/(silnia(1)*silnia(4-1)))*(silnia(4)/(silnia(1)*silnia(4-1)))*(silnia(4)/(silnia(1)*silnia(4-1)))-40;
+            var result_s=Round(result/2598960,3);
+            pfive.innerHTML=result+" Possible layouts<br>"+result_s*100+"% Chance";
+            
+        };
+        function prfive(){
+            var pfive = document.getElementById("pfive");
+            pfive.innerHTML="Straight";
+      
+        };
+        function psix(){
+            var psix = document.getElementById("psix");     
+            var result=(silnia(13)/(silnia(5)*silnia(13-5)))*(silnia(4)/(silnia(1)*silnia(4-1)))-40;
+            var result_s=Round(result/2598960,4);
+            psix.innerHTML=result+" Possible layouts<br>"+result_s*100+"% Chance";
+            
+        };
+        function prsix(){
+            var psix = document.getElementById("psix");
+            psix.innerHTML="Flush";
+      
+        };
+        function pseven(){
+            var pseven = document.getElementById("pseven");     
+            var result=(silnia(13)/(silnia(1)*silnia(13-1)))*(silnia(4)/(silnia(3)*silnia(4-3)))*(silnia(12)/(silnia(1)*silnia(12-1)))*(silnia(4)/(silnia(2)*silnia(4-2)));
+            var result_s=Round(result/2598960,3);
+            pseven.innerHTML=result+" Possible layouts<br>"+result_s*100+"% Chance";
+            
+        };
+        function prseven(){
+            var pseven = document.getElementById("pseven");
+            pseven.innerHTML="Full house";
+      
+        };
+        function peight(){
+            var peight = document.getElementById("peight");     
+            var result=(silnia(13)/(silnia(1)*silnia(13-1)))*(silnia(4)/(silnia(4)*silnia(4-4)))*(silnia(48)/(silnia(1)*silnia(48-1)));
+            var result_s=Round(result/2598960,5);
+            peight.innerHTML=result+" Possible layouts<br>"+result_s*100+"% Chance";
+            
+        };
+        function preight(){
+            var peight = document.getElementById("peight");
+            peight.innerHTML="Quads";
+      
+        };
+        function pnine(){
+            var pnine = document.getElementById("pnine");     
+            var result=(silnia(10)/(silnia(1)*silnia(10-1)))*(silnia(4)/(silnia(1)*silnia(4-1)))-(silnia(4)/(silnia(1)*silnia(4-1)));
+            var result_s=Round(result/2598960,5);
+            pnine.innerHTML=result+" Possible layouts<br>"+result_s*100+"% Chance";
+            
+        };
+        function prnine(){
+            var pnine = document.getElementById("pnine");
+            pnine.innerHTML="Straight flush";
+      
+        };
+        function pten(){
+            var pten = document.getElementById("pten");     
+            var result=(silnia(4)/(silnia(1)*silnia(4-1)));
+            var result_s=Round(result/2598960,8);
+            pten.innerHTML=result+" Possible layouts<br>"+result_s*100+"% Chance";
+            
+        };
+        function prten(){
+            var pten = document.getElementById("pten");
+            pten.innerHTML="Royal flush";
+      
+        };
+        
+    </script>
+</head>
+<body>
+      
+   <h1>TicTacToe</h1>
+   <h3>Start, if X</h3>
+    <table id="tic">
+        <tr>
+            <td id="one" onmouseover="three()" onmouseout="r3()">1</td>
+            <td id="two" onmouseover="two()" onmouseout="r2()">2</td>
+            <td id="three" onmouseover="three()" onmouseout="r3()">3</td>
+        </tr>
+        <tr>
+            <td id="four" onmouseover="two()" onmouseout="r2()">4</td>
+            <td id="five" onmouseover="four()" onmouseout="r4()">5</td>
+            <td id="six" onmouseover="two()" onmouseout="r2()">6</td>
+        </tr>
+        <tr>
+            <td id="seven" onmouseover="three()" onmouseout="r3()">7</td>
+            <td id="eight" onmouseover="two()" onmouseout="r2()">8</td>
+            <td id="nine" onmouseover="three()" onmouseout="r3()">9</td>
+        </tr>
+    </table>
+    <p id="draw"><b>P(Draw)</b> = 1-(0.444+0.141+0.028) = <b>0.387</b></p>
+    
+    <hr />
+    <h1>Dice</h1>
+    <h2>The same number <i>X</i> times</h2>
+    <table id="dice">
+        <tr>
+            <td id="done" onmouseover="dice()" onmouseout="dice_r()">1</td>
+            <td id="dtwo"  onmouseover="dice()" onmouseout="dice_r()">2</td>
+            <td id="dthree"  onmouseover="dice()" onmouseout="dice_r()">3</td>
+            <td id="dfour"  onmouseover="dice()" onmouseout="dice_r()">4</td>
+            <td id="dfive"  onmouseover="dice()" onmouseout="dice_r()">5</td>
+            <td id="dsix"  onmouseover="dice()" onmouseout="dice_r()">6</td>
+        </tr>
+    </table>
+    <h2>Pachisi("<i>Chinese</i>") with dice</h2>
+    <h3>Possible to win 1st round at 1 move (if we always get 6).</h3>
+    6+6+6+6+6+6+6+1 - from start to "<i>park</i>" at the end.<br>
+    (7+1)/6^(7+1) = 8/1679616<br>
+    <b>P(8/6^8) = 0.00000476299 = 0.000476299%</b> - possible to win 1st round at 1 move<br>
+    
+    <hr />
+    
+    <h1>Poker</h1>
+    
+    <table id="poker">
+        <tr>
+            <td id="pone" onmouseover="pone()" onmouseout="prone()">High card</td>
+            <td id="ptwo" onmouseover="ptwo()" onmouseout="prtwo()">One pair</td>
+            <td id="pthree" onmouseover="pthree()" onmouseout="prthree()">Two pair</td>
+            <td id="pfour" onmouseover="pfour()" onmouseout="prfour()">Three of a kind</td>
+            <td id="pfive" onmouseover="pfive()" onmouseout="prfive()">Straight</td>
+            <td id="psix" onmouseover="psix()" onmouseout="prsix()">Flush</td>
+            <td id="pseven" onmouseover="pseven()" onmouseout="prseven()">Full house</td>
+            <td id="peight" onmouseover="peight()" onmouseout="preight()">Quads</td>
+            <td id="pnine" onmouseover="pnine()" onmouseout="prnine()">Straight flush</td>
+            <td id="pten" onmouseover="pten()" onmouseout="prten()">Royal flush</td>
+        </tr>
+    </table><br>
+    Of <b>2598960</b> total layouts
+</body>
+</html>
